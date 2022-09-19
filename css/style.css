@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --black__color: #2f3542;
+    --grey__color: #57606f;
+    --white__color: #f1f2f6;
+    --pink__color: #ff6b81;
+}
+
+body{
+    background-color: var(--black__color);
+}
