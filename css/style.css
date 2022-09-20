@@ -43,6 +43,7 @@ body{
     background-color: transparent;
     outline: none;
     color: var(--white__color);
+    padding: 0 10px;
 }
 
 .input input::placeholder{
@@ -53,4 +54,63 @@ body{
 .input input::placeholder{
     font-weight: 300;
     letter-spacing: 0.5px;
+}
+
+/* CONTAIN TASK */
+
+.contain__tasks{
+    width: 100%;
+    margin-top: 30px;
+}
+
+.contain__tasks h3{
+    color: var(--white__color);
+    font-weight: 300;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.task{
+    background-color: var(--grey__color);
+    border-radius: 10px;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--white__color);
+}
+
+.todo .task:not(:last-child),
+.completed .task:not(:last-child){
+    margin-bottom: 15px;
+}
+
+.completed .task p{
+    text-decoration-line: line-through;
+}
+
+.task p{
+    font-weight: 300;
+    margin-right: 10px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    font-family: 'source sans pro';
+}
+
+.contain__btn{
+    display: flex;
+}
+
+.contain__btn span:not(:last-child){
+    margin-right: 10px;
+}
+
+.contain__btn span{
+    padding: 5px;
+    background-color: #ff6b813c;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--pink__color);
 }
