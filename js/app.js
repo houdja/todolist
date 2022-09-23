@@ -1,5 +1,6 @@
 const form = document.querySelector('.add__tasks');
 const todo = document.querySelector('.todo div');
+const completed = document.querySelector('.completed div');
 const updateForm = document.querySelector('.update')
 const updateTask = document.getElementById('update_task');
 const idTask = document.getElementById('id_task');
@@ -18,6 +19,21 @@ function createTask(t){
             </span>
             <span class="material-icons edit">
                 edit
+            </span>
+        </div>`
+
+        return div;
+}
+
+function createCompletedTask(t){
+
+    let div = document.createElement('div')
+    div.classList.add('task')
+    div.innerHTML = `
+        <p data-id='${t.id}'>${t.task}</p>
+        <div class="contain__btn">
+            <span class="material-icons delete">
+                delete
             </span>
         </div>`
 
@@ -76,6 +92,7 @@ let tasks = function(){
                         if(data.success){
                             alert(data.msg);
                             tasks();
+                            completedTasks();
                         }else{
                             alert(data.msg);
                         }
@@ -96,6 +113,35 @@ let tasks = function(){
 }
 
 tasks();
+
+//RECUPERE LES TACHES ACCOMPLIE
+let completedTasks = function(){
+    completed.innerHTML = 'Chargement...';
+    fetch('php/completed_tasks.php')
+    .then(response => {
+        if(response.ok){
+            return response.json();
+        }
+    })
+    .then(data => {
+        if(data.success){
+            let cTasks = JSON.parse(data.data);
+            if(cTasks.length != 0){
+                completed.innerHTML = '';
+                cTasks.forEach(task => {
+                    completed.appendChild(createCompletedTask(task));
+                })
+            }else{
+                completed.innerHTML = 'Aucune tâche';
+            }
+        }
+    })
+    .catch( e => {
+        console.error("Tache accomplie: " + e);
+    })
+}
+
+completedTasks();
 
 // AJOUTER UNE TACHE
 
