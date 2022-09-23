@@ -81,6 +81,12 @@ body{
     color: var(--white__color);
 }
 
+.todo{
+    color: var(--white__color);
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
 .todo .task:not(:last-child),
 .completed .task:not(:last-child){
     margin-bottom: 15px;
@@ -113,4 +119,51 @@ body{
     font-size: 20px;
     cursor: pointer;
     color: var(--pink__color);
+}
+
+/* UPDATE FORM */
+
+.update{
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    background-color: var(--black__color);
+}
+
+
+.update textarea{
+    width: 100%;
+    min-height: 100px;
+    padding: 10px 20px;
+    outline: none;
+    resize: none;
+    background-color: transparent;
+    color: var(--white__color);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    border: 1px solid var(--grey__color);
+}
+
+.update textarea::placeholder{
+    color: var(--white__color);
+}
+
+.update button{
+    padding: 10px 20px;
+    background-color: var(--pink__color);
+    color: var(--white__color);
+    border: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.update.active{
+    visibility: visible;
+    opacity: 1;
 }
