@@ -41,6 +41,7 @@ let tasks = function(){
                 todo.appendChild(createTask(task));
             })
             let editsBtn = document.querySelectorAll('.edit');
+            let donesBtn = document.querySelectorAll('.done');
             editsBtn.forEach(btn => {
                 btn.addEventListener('click', function(e){
                     let task = e.target.parentNode.parentNode;
@@ -52,12 +53,45 @@ let tasks = function(){
                     updateForm.classList.add('active')
                 })
             })
+            donesBtn.forEach(done => {
+                done.addEventListener('click', e => {
+                    let task = e.target.parentNode.parentNode;
+                    let p = task.querySelector('p');
+                    let id = p.getAttribute('data-id');
+                    let content = p.innerHTML;
+                    fetch('php/done.php?data=' + JSON.stringify(
+                        {
+                            'id': id,
+                            'content': content
+                        }
+                    ), {
+                        method: 'GET'
+                    })
+                    .then(response => {
+                        if(response.ok){
+                            return response.json();
+                        }
+                    })
+                    .then(data => {
+                        if(data.success){
+                            alert(data.msg);
+                            tasks();
+                        }else{
+                            alert(data.msg);
+                        }
+                    })
+                    .catch(e => {
+                        alert("ERREUR : " + e)
+                    })
+                })
+            })
+
         }else{
             todo.innerHTML = 'Aucune tâche...'
         }
     })
     .catch(e => {
-        console.log("Erreur" + e);
+        alert("Erreur" + e);
     })
 }
 
