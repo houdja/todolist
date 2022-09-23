@@ -81,7 +81,8 @@ body{
     color: var(--white__color);
 }
 
-.todo{
+.todo,
+.completed{
     color: var(--white__color);
     font-weight: 300;
     letter-spacing: 1px;
