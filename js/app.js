@@ -131,6 +131,28 @@ let completedTasks = function(){
                 cTasks.forEach(task => {
                     completed.appendChild(createCompletedTask(task));
                 })
+                const deleteBtn = document.querySelectorAll('.delete');
+                deleteBtn.forEach(btn => {
+                    btn.addEventListener('click', function(e){
+                        let task = e.target.parentNode.parentNode;
+                        let id = task.querySelector('p').getAttribute('data-id')
+                        console.log(id);
+                        fetch('php/delete.php?id=' + id)
+                        .then(response => {
+                            if(response.ok){
+                                return response.json();
+                            }
+                        })
+                        .then(data => {
+                            if(data.success){
+                                alert(data.msg);
+                                completedTasks();
+                            }else{
+                                alert(data.msg);
+                            }
+                        })
+                    })
+                })
             }else{
                 completed.innerHTML = 'Aucune tâche';
             }
